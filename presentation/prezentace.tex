@@ -1,0 +1,118 @@
+\documentclass{beamer}
+
+
+%\usepackage{multimedia}
+\usepackage[czech]{babel}
+%\usepackage{enumitem}
+
+%\usetheme{Boadilla}
+\usetheme{default}
+\usecolortheme{seahorse}
+\definecolor{myblue}{rgb}{0.2, 0.2, 0.6}
+\setbeamertemplate{caption}{{\color{myblue}Obrázek:} \raggedright\insertcaption\par}
+\setbeamertemplate{footline}[frame number] 
+
+\newcommand{\authorname}{Matěj Dluhoš, Jan Gaja, Petr Gajdošík, Jan Rádl, Petr Jurásek, Phan Thanh Tu}
+\newcommand{\authorsshort}{Dluhoš, Gaja, Gajdošík, Rádl, Jurásek, Phan}
+\newcommand{\thesisname}{PDS: Python}
+
+\title{\thesisname}
+\author{\authorname}
+\institute{Univerzita Palackého v Olomouci}
+\date{\today}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\authorsshort
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\thesisname
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+%\logo{\includegraphics[height=1cm]{UP_logo.png}}
+\usepackage{tikz}
+\addtobeamertemplate{headline}{}{%
+    \begin{tikzpicture}[overlay, remember picture]
+    	\ifnum\insertframenumber>1
+        	\node[anchor=north east, inner sep=5pt] at (current page.north east) {\includegraphics[height=1cm]{obrazky/UP_logo.png}};
+        \fi
+    \end{tikzpicture}
+}
+
+\setbeamercolor{titlelike}{bg=,fg=}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}{Obsah}
+	\tableofcontents
+\end{frame}
+
+\section{Představení bakalářské práce}
+\subsection{Cíle práce}
+\begin{frame}{Cíle práce}
+	\begin{itemize}
+		\item \textbf{Porovnat statický a dynamický jazyk pro programování mikrokontrolérů.}
+		\item \textbf{Snadnost implementace řešení v zastupujících jazycích.}
+			\begin{itemize}
+				\item[\textendash] Jednoduchost vytvoření nového projektu.
+				\item[\textendash] Snadnost experimentování.
+				\item[\textendash] Budoucí rozvoj aplikace.
+			\end{itemize}
+		\item \textbf{Porovnání výkonu zástupců statického a dynamického jazyka.}
+			\begin{itemize}
+				\item[\textendash] Rychlost.
+				\item[\textendash] Paměťová náročnost.
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Důvod zvolení práce}
+\begin{frame}{Důvod zvolení práce}
+	\begin{itemize}
+		%\item \textbf{Výběr vhodného programovacího jazyka může být složitý proces.}
+		\item \textbf{Výběr vhodného programovacího jazyka může být složitý.}
+		\item \textbf{Rostoucí význam mikrokontrolérů.}
+			\begin{itemize}
+				\item[\textendash] S rozvojem IoT se zvyšuje důraz na vývoj efektivních a spolehlivých vestavěných systémů.
+			\end{itemize}
+		\item \textbf{Nová zkušenost.}
+	\end{itemize}
+
+\end{frame}
+
+\section{Rozbor bakalářské práce}
+\subsection{Co to je statický a dynamický proces?}
+\begin{frame}{Co je to statický a dynamický proces?}
+	\begin{itemize}
+		\item \textbf{Statický proces}
+			\begin{itemize}
+				\item[\textendash] Vlastnosti nebo konfigurace se nemění.
+				\item[\textendash] Veškeré typové kontroly a alokace paměti jsou provedeny při kompilaci.
+				\item[\textendash] Větší předvídatelnost a často i lepší výkon.
+			\end{itemize}
+		\item \textbf{Dynamický proces}
+			\begin{itemize}
+				\item[\textendash] Schopnost měnit své chování nebo konfiguraci v reálném čase.
+				\item[\textendash] Typy proměnných mohou být určeny a změněny za běhu programu.
+				\item[\textendash] Umožňuje větší flexibilitu a adaptabilitu.
+				\item[\textendash] Může mít následky na výkon a bezpečnost.
+			\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\end{document}
