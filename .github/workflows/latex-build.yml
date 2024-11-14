@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install minimal TeX Live packages
         run: |
@@ -39,7 +39,7 @@ jobs:
           pdflatex -output-directory=presentation presentation/prezentace.tex
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: beamer-presentation
           path: presentation/prezentace.pdf
@@ -53,18 +53,18 @@ jobs:
       - name: Create Release (only on push to main)
         if: github.ref == 'refs/heads/main'
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: "${{ env.TAG_NAME }}"
-          release_name: "Beamer Presentation ${{ env.TAG_NAME }}"
+          release_name: "Presentation ${{ env.TAG_NAME }}"
           draft: false
           prerelease: false
 
       - name: Upload PDF to Release
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -75,7 +75,7 @@ jobs:
 
       - name: Post PR Comment with Artifact Link (only on pull request)
         if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
