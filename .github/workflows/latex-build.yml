@@ -50,28 +50,24 @@ jobs:
           echo "TAG_NAME=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
           echo "TAG_NAME=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
 
-      - name: Create Release (only on push to main)
+      - name: Create Release via GitHub API (only on push to main)
         if: github.ref == 'refs/heads/main'
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: "${{ env.TAG_NAME }}"
-          release_name: "Presentation ${{ env.TAG_NAME }}"
-          draft: false
-          prerelease: false
+        run: |
+          # Create release via GitHub API
+          release_response=$(curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{"tag_name":"${{ env.TAG_NAME }}","name":"Presentation ${{ env.TAG_NAME }}","draft":false,"prerelease":false}' \
+            https://api.github.com/repos/${{ github.repository }}/releases)
 
-      - name: Upload PDF to Release
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: presentation/prezentace.pdf
-          asset_name: prezentace.pdf
-          asset_content_type: application/pdf
+          # Extract the upload URL from the response
+          upload_url=$(echo $release_response | jq -r '.upload_url' | sed 's/{?name,label}//')
+
+          # Upload the PDF file to the release
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary @presentation/prezentace.pdf \
+            "$upload_url?name=prezentace.pdf&label=prezentace.pdf"
 
       - name: Post PR Comment with Artifact Link (only on pull request)
         if: github.event_name == 'pull_request'
