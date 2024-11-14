@@ -1,4 +1,4 @@
-name: Build LaTeX PDF
+name: Build Beamer Presentation
 
 on:
   push:
@@ -16,17 +16,21 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
 
-      - name: Set up TeX Live
+      - name: Install minimal TeX Live packages
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y texlive-full
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-fonts-recommended \
+            texlive-latex-extra
 
-      - name: Compile LaTeX document
+      - name: Compile Beamer Presentation
         run: |
-          latexmk -pdf -silent -outdir=output main.tex
+          pdflatex -output-directory=output presentation/prezentace.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v3
         with:
-          name: output-pdf
-          path: output/main.pdf
+          name: beamer-presentation
+          path: presentation/prezentace.pdf
