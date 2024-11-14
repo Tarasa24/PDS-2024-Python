@@ -34,6 +34,14 @@ jobs:
           pdflatex -output-directory=presentation presentation/prezentace.tex
           pdflatex -output-directory=presentation presentation/prezentace.tex
 
+      - name: Commit and push PDF file
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add presentation/prezentace.pdf
+          git commit -m "Add generated Beamer PDF"
+          git push
+
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v3
         with:
