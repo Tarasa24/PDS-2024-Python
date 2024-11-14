@@ -26,8 +26,12 @@ jobs:
             texlive-latex-extra \
             texlive-lang-czechslovak
 
+      - name: Clean previous build files
+        run: rm -f presentation/*.pdf presentation/*.aux presentation/*.log
+
       - name: Compile Beamer Presentation
         run: |
+          pdflatex -output-directory=presentation presentation/prezentace.tex
           pdflatex -output-directory=presentation presentation/prezentace.tex
 
       - name: Upload PDF artifact
