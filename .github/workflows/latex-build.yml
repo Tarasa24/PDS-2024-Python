@@ -23,7 +23,8 @@ jobs:
             texlive-latex-base \
             texlive-latex-recommended \
             texlive-fonts-recommended \
-            texlive-latex-extra
+            texlive-latex-extra \
+            texlive-lang-czechslovak
 
       - name: Compile Beamer Presentation
         run: |
