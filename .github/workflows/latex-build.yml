@@ -27,7 +27,7 @@ jobs:
 
       - name: Compile Beamer Presentation
         run: |
-          pdflatex -output-directory=output presentation/prezentace.tex
+          pdflatex -output-directory=presentation presentation/prezentace.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v3
