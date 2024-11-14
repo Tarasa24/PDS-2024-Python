@@ -46,7 +46,9 @@ jobs:
 
       - name: Generate Tag Name
         id: tag_name
-        run: echo "tag=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+        run: |
+          echo "TAG_NAME=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+          echo "TAG_NAME=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
 
       - name: Create Release (only on push to main)
         if: github.ref == 'refs/heads/main'
@@ -55,8 +57,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "${{ env.tag }}"
-          release_name: "Beamer Presentation ${{ env.tag }}"
+          tag_name: "${{ env.TAG_NAME }}"
+          release_name: "Beamer Presentation ${{ env.TAG_NAME }}"
           draft: false
           prerelease: false
 
