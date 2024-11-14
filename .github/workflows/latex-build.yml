@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'presentation/prezentace.tex'
   pull_request:
     branches:
       - main
+    paths:
+      - 'presentation/prezentace.tex'
 
 jobs:
   build:
@@ -34,16 +38,31 @@ jobs:
           pdflatex -output-directory=presentation presentation/prezentace.tex
           pdflatex -output-directory=presentation presentation/prezentace.tex
 
-      - name: Commit and push PDF file
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add presentation/prezentace.pdf
-          git commit -m "Add generated Beamer PDF"
-          git push
-
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v3
         with:
           name: beamer-presentation
           path: presentation/prezentace.pdf
+
+      - name: Create Release (only on push to main)
+        if: github.ref == 'refs/heads/main'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "beamer-presentation-$(date +'%Y%m%d%H%M%S')"
+          release_name: "Beamer Presentation $(date +'%Y-%m-%d %H:%M:%S')"
+          draft: false
+          prerelease: false
+          files: presentation/prezentace.pdf
+
+      - name: Post PR Comment with Artifact Link (only on pull request)
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :page_facing_up: The generated PDF presentation is available as an artifact.
+            [Download PDF](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts)
