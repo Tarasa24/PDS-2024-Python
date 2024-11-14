@@ -44,6 +44,10 @@ jobs:
           name: beamer-presentation
           path: presentation/prezentace.pdf
 
+      - name: Generate Tag Name
+        id: tag_name
+        run: echo "tag=v$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+
       - name: Create Release (only on push to main)
         if: github.ref == 'refs/heads/main'
         id: create_release
@@ -51,8 +55,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: "v$(date +'%Y%m%d-%H%M%S')"
-          release_name: "Beamer Presentation $(date +'%Y-%m-%d %H:%M:%S')"
+          tag_name: "${{ env.tag }}"
+          release_name: "Beamer Presentation ${{ env.tag }}"
           draft: false
           prerelease: false
 
