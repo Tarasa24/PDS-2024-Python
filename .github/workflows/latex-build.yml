@@ -37,24 +37,20 @@ jobs:
           name: beamer-presentation
           path: presentation/prezentace.pdf
 
-      - name: Create Release via GitHub API
+      - name: Upload PDF to Existing Release via GitHub API
         run: |
           # Extract the tag name (triggered by the tag push)
           TAG_NAME="${{ github.ref_name }}"
 
-          # Create release via GitHub API
-          release_response=$(curl -X POST \
+          # Fetch the release associated with the tag
+          release_response=$(curl -X GET \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d "{\"tag_name\":\"$TAG_NAME\",\"name\":\"Presentation $TAG_NAME\",\"draft\":false,\"prerelease\":false}" \
-            https://api.github.com/repos/${{ github.repository }}/releases)
-
-          # Debug: Print release_response
-          echo "Release response: $release_response"
+            https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME)
 
           # Extract the upload URL from the response
           upload_url=$(echo "$release_response" | jq -r '.upload_url')
-          if [ -z "$upload_url" ]; then
-            echo "Error: Failed to extract upload_url from release_response."
+          if [ -z "$upload_url" ] || [ "$upload_url" == "null" ]; then
+            echo "Error: Failed to find release for tag $TAG_NAME or extract upload_url."
             echo "$release_response"
             exit 1
           fi
