@@ -48,8 +48,20 @@ jobs:
             -d "{\"tag_name\":\"$TAG_NAME\",\"name\":\"Presentation $TAG_NAME\",\"draft\":false,\"prerelease\":false}" \
             https://api.github.com/repos/${{ github.repository }}/releases)
 
+          # Debug: Print release_response
+          echo "Release response: $release_response"
+
           # Extract the upload URL from the response
-          upload_url=$(echo $release_response | jq -r '.upload_url' | sed 's/{?name,label}//')
+          upload_url=$(echo "$release_response" | jq -r '.upload_url')
+          if [ -z "$upload_url" ]; then
+            echo "Error: Failed to extract upload_url from release_response."
+            echo "$release_response"
+            exit 1
+          fi
+          upload_url=$(echo "$upload_url" | sed 's/{?name,label}//')
+
+          # Debug: Print upload_url
+          echo "Upload URL: $upload_url"
 
           # Upload the PDF file to the release
           curl -X POST \
