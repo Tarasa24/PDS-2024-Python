@@ -1,9 +1,6 @@
 \documentclass{beamer}
-
-
-%\usepackage{multimedia}
+\usepackage{hyperref}
 \usepackage[czech]{babel}
-%\usepackage{enumitem}
 
 %\usetheme{Boadilla}
 \usetheme{default}
@@ -12,8 +9,8 @@
 \setbeamertemplate{caption}{{\color{myblue}Obrázek:} \raggedright\insertcaption\par}
 \setbeamertemplate{footline}[frame number] 
 
-\newcommand{\authorname}{Matěj Dluhoš, Jan Gaja, Petr Gajdošík, Jan Rádl, Petr Jurásek, Phan Thanh Tu}
-\newcommand{\authorsshort}{Dluhoš, Gaja, Gajdošík, Rádl, Jurásek, Phan}
+\newcommand{\authorname}{Dluhoš Matěj, Gaja Jan, Gajdošík Petr, Jurásek Petr, Phan Thanh Tú, Jan Rádl}
+\newcommand{\authorsshort}{Dluhoš, Gaja, Gajdošík, Jurásek, Phan, Rádl}
 \newcommand{\thesisname}{PDS: Python}
 
 \title{\thesisname}
@@ -61,64 +58,99 @@
 	\tableofcontents
 \end{frame}
 
-\section{Představení bakalářské práce}
-\subsection{Cíle práce}
-\begin{frame}{Cíle práce}
+\section{Úvod do Pythonu s paralelismem}
+\subsection{Historie a zaměření}
+\begin{frame}{Historie a zaměření}
 	\begin{itemize}
-		\item \textbf{Porovnat statický a dynamický jazyk pro programování mikrokontrolérů.}
-		\item \textbf{Snadnost implementace řešení v zastupujících jazycích.}
-			\begin{itemize}
-				\item[\textendash] Jednoduchost vytvoření nového projektu.
-				\item[\textendash] Snadnost experimentování.
-				\item[\textendash] Budoucí rozvoj aplikace.
-			\end{itemize}
-		\item \textbf{Porovnání výkonu zástupců statického a dynamického jazyka.}
-			\begin{itemize}
-				\item[\textendash] Rychlost.
-				\item[\textendash] Paměťová náročnost.
-			\end{itemize}
+		\item Vytvořen \textbf{Guidem van Rossumem} v roce \textbf{1991}.
+	\end{itemize}
+	\begin{itemize}
+		\item Jednoduchost a čitelnost kódu.
+		\item Vysoká produktivita programátorů.
+		\item Univerzální použití: od webových aplikací přes vědecké výpočty až po strojové učení.
 	\end{itemize}
 \end{frame}
 
-\subsection{Důvod zvolení práce}
-\begin{frame}{Důvod zvolení práce}
+\subsection{Paralelismus v Pythonu}
+\begin{frame}{Paralelismus v Pythonu}
 	\begin{itemize}
-		%\item \textbf{Výběr vhodného programovacího jazyka může být složitý proces.}
-		\item \textbf{Výběr vhodného programovacího jazyka může být složitý.}
-		\item \textbf{Rostoucí význam mikrokontrolérů.}
-			\begin{itemize}
-				\item[\textendash] S rozvojem IoT se zvyšuje důraz na vývoj efektivních a spolehlivých vestavěných systémů.
-			\end{itemize}
-		\item \textbf{Nová zkušenost.}
+		\item Python získal základní podporu paralelismu prostřednictvím vláken ve verzi 1.5.2 (1999).
+		\item Zaveden \textbf{GIL} (Global Interpreter Lock)
+		\begin{itemize}
+			\item [\textendash] Usnadnilo integraci nativního kódu v C.
+			\item [\textendash] Vyřešilo problémy s přístupem ke sdíleným datům ve více vláknech.
+			\item [\textendash] Optimalizovalo výkon na systémech s jedním jádrem.
+			\item [\textendash] Omezuje paralelní výkon na vícejádrových procesorech.
+			\item [\textendash] Vede k neefektivnímu využití vláken u \textbf{CPU-bound} úloh.
+			\item [\textendash] \hypersetup{urlcolor=blue} \href{https://peps.python.org/pep-0703/}{PEP 703} - Making the Global Interpreter Lock Optional in CPython 
+		\end{itemize}
 	\end{itemize}
+\end{frame}
+
+\subsection{Proč odstranit GIL?}
+\begin{frame}{Proč odstranit GIL?}
+	\begin{itemize}
+		\item Většina zařízení dnes obsahuje vícejádrové procesory, kde GIL představuje významné omezení.
+		\item Efektivnější paralelní výpočty, například v oblastech umělé inteligence nebo numerických simulacích.
+		\item Výzvy při odstranění GIL:
+		\begin{itemize}
+			\item [\textendash] Potřeba bezpečného a efektivního spravování sdílené paměti (například více zamykání nebo jiných synchronizačních mechanismů).
+			\item [\textendash] Zvýšení složitosti implementace interpretu Pythonu.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\subsection{Komunikační model Pythonu}
+\begin{frame}{Komunikační model Pythonu}
 
 \end{frame}
 
-\section{Rozbor bakalářské práce}
-\subsection{Co to je statický a dynamický proces?}
-\begin{frame}{Co je to statický a dynamický proces?}
-	\begin{itemize}
-		\item \textbf{Statický proces}
-			\begin{itemize}
-				\item[\textendash] Vlastnosti nebo konfigurace se nemění.
-				\item[\textendash] Veškeré typové kontroly a alokace paměti jsou provedeny při kompilaci.
-				\item[\textendash] Větší předvídatelnost a často i lepší výkon.
-			\end{itemize}
-		\item \textbf{Dynamický proces}
-			\begin{itemize}
-				\item[\textendash] Schopnost měnit své chování nebo konfiguraci v reálném čase.
-				\item[\textendash] Typy proměnných mohou být určeny a změněny za běhu programu.
-				\item[\textendash] Umožňuje větší flexibilitu a adaptabilitu.
-				\item[\textendash] Může mít následky na výkon a bezpečnost.
-			\end{itemize}
-	\end{itemize}
+\section{Synchronizační nástroje standardní knihovny}
+\subsection{Knihovna threading}
+\begin{frame}{Knihovna threading}
+
 
 \end{frame}
 
-\section{Test}
-\subsection{Co to je?}
-\begin{frame}{test8}
-...
+\subsection{Knihovna multiprocessing}
+\begin{frame}{Knihovna multiprocessing}
+
+\end{frame}
+
+\subsection{Knihovna concurrent.futures}
+\begin{frame}{Knihovna concurrent.futures}
+
+\end{frame}
+
+\subsection{Knihovna asyncio}
+\begin{frame}{Knihovna asyncio}
+
+\end{frame}
+
+\section{Nástroje externích knihoven}
+\begin{frame}{Nástroje externích knihoven}
+
+\end{frame}
+
+\section{Nástroje pro distribuované systémy}
+\subsection{Knihovna socket}
+\begin{frame}{Knihovna socket}
+
+\end{frame}
+
+\subsection{Knihovna http.server}
+\begin{frame}{Knihovna http.server}
+
+\end{frame}
+
+\subsection{RabbitMQ}
+\begin{frame}{RabbitMQ}
+
+\end{frame}
+
+\subsection{Další nástroje}
+\begin{frame}{Další nástroje}
+
 \end{frame}
 
 \end{document}
