@@ -10,3 +10,5 @@
 *.gz
 *.toc
 presentation/prezentace.pdf
+presentation/prezentace.fdb_latexmk
+presentation/prezentace.fls
