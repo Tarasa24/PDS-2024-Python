@@ -122,7 +122,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Třída Thread}
+\begin{frame}[fragile]{Třída Thread}
     \begin{itemize}
         \item Instance reprezentuje vlákno
         \item Předání funkce a argumentů
@@ -134,15 +134,19 @@
         \item \textit{local()} – data konkrétního vlákna
 
         \vskip 0.2in
-        \item Ukázka
-        
-        \vskip 0.2in
         \item Při práci s vlákny může dojít k synchronizačním problémům
         \item Modul poskytuje mnoho synchronizačních nástrojů
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    t = threading.Thread(target=some_function, args=(some_arg,))
+    t.start()
+    # Nějaký kód
+    t.join()
+    \end{semiverbatim}
 \end{frame}
 
-\begin{frame}{Lock}
+\begin{frame}[fragile]{Lock}
     \begin{itemize}
             \item Zajistí, že ke sdíleným zdrojům bude mít přítup pouze jedno vlákno
             \item Můžeme zamknou příkaz nebo skupinu příkazu
@@ -154,11 +158,19 @@
 
             \vskip 0.15in
             \item Varianta \textbf{RLock} pro rekurzivní funkce
-            \item Ukázka
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    lock = threading.Lock()
+
+    def function():
+	    # Nějaký kód
+	    with lock:  
+	        # Další kód
+    \end{semiverbatim}
 \end{frame}
 
-\begin{frame}{Semaphore}
+\begin{frame}[fragile]{Semaphore}
     \begin{itemize}
         \item Dokáže omezit počet vláken, které mají přístup ke zdroji
         \item Konstruktor očekává value, určuje maximální počet přístupů ke zdroji
@@ -168,13 +180,19 @@
         \item \textit{acquire()} – zjistí jestli je count $>$ 0, pokud ano, dekrementuje count, jinak zablokuje vlákno
         \item \textit{release()} – inkrementuje count, umožní tak dalšímu vláknu přístup
         \item Opět with statement dělá automaticky
-        
-        \vskip 0.25in
-        \item Ukázka
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    sem = threading.Semaphore(limit)
+
+    def function():
+        # Nějaký kód
+        with sem:
+            # kritická sekce
+    \end{semiverbatim}
 \end{frame}
 
-\begin{frame}{Barrier}
+\begin{frame}[fragile]{Barrier}
     \begin{itemize}
         \item Umožňuje zablokovat vlákna, dokud všechna nedojdou na určité místo v programu
         \item Až všechna vlákna dosáhnou bariéry, pokračují dál v práci
@@ -182,10 +200,16 @@
 
         \vskip 0.25in
         \item \textit{wait()} – Místo, kde se vlákno zastaví, dokud ostatní vlákna k němu nedojdou
-        
-        \vskip 0.25in
-        \item Ukázka
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    barrier = threading.Barrier(limit)
+
+    def function():
+        # Nějaký kód
+        barrier.wait()
+        # Další kód
+    \end{semiverbatim}
 \end{frame}
 
 \begin{frame}{Event}
@@ -197,13 +221,26 @@
         \item \textit{wait()} – vlákna budou blokována, dokud nebude flag nastaven na True
         \item \textit{set()} – Nastaví flag na True, vlákna volající wait() budou propuštěna
         \item \textit{clear()} – Nastaví flag na False, vlákna volající wait() budou zablokována
-        
-        \vskip 0.25in
-        \item Ukázka
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Condition}
+\begin{frame}[fragile]{Event}
+    \begin{semiverbatim}
+    event = threading.Event()
+
+    def function1():
+    	# Nějaký kód
+    	event.wait()
+    	# Další kód kód
+    
+    def function2():
+    	# Nějaký kód
+    	event.set()
+    	# Další kód kód    
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Condition}
     \begin{itemize}
         \item Funguje obdobně, ale používá se současně se zámkem
 
@@ -211,10 +248,23 @@
         \item \textit{wait()} – stejné, ale navíc odemkne zámek
         \item \textit{notify()} – odblokuje jedno čekající vlákno
         \item \textit{notify\_all()} – odblokuje všechna čekající vlákna
-        
-        \vskip 0.25in
-        \item Ukázka
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    cond = threading.Condition()
+
+    def function1():
+    	with cond:
+    		# Nějaký kód
+    		cond.wait()
+    		# Další kód kód
+    
+    def function2():
+    	with cond:
+    		# Nějaký kód
+    		cond.notify()
+    		# Další kód kód
+    \end{semiverbatim}
 \end{frame}
 
 \subsection{Knihovna multiprocessing}
@@ -235,7 +285,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Třída Proces}
+\begin{frame}[fragile]{Třída Proces}
     \begin{itemize}
         \item Instance reprezentuje jeden nezávislý proces
         \item Tvorba stejná jako u threading
@@ -248,8 +298,12 @@
             \item Automatizuje jejich tvorbu a rozdělení mezi jádra CPU
             \item \textit{map()} - pro paralelní provedení funkce na každý prvek z kolekce dat
         \end{itemize}
-        \item Ukázka
     \end{itemize}
+    \scriptsize
+    \begin{semiverbatim}
+    pool = Pool(processes=num_of_processes) 
+    result = pool.map(some_function, iterable_data)
+    \end{semiverbatim}  
 \end{frame}
 
 \begin{frame}{Data a komunikace}
@@ -271,8 +325,35 @@
             \item Stejné nástroje pro synchronizaci jako v modulu threading
             \item Lock, Semaphore, Barrier, Event, Condition
         \end{itemize}
-        \item Ukázka
     \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Data a komunikace}
+    \scriptsize
+    \begin{semiverbatim}
+    value = Value('i', init_value)  
+    result = Array('i', size)
+    
+    def example_function(data,value,result):  
+        for i, num in range(5):  
+            result[i] = num * num  
+            value.value += num
+
+    q = multiprocessing.Queue()
+    conn1, conn2 = multiprocessing.Pipe()
+
+    def producer(conn,q):
+        q.put("Queue Message")
+        conn.send("Pipe Message")
+        conn.close()
+
+    def consumer(conn,q):
+        msg = q.get()
+        print(msg)
+        msg = conn.recv()
+        print(msg)
+        conn.close()
+    \end{semiverbatim}
 \end{frame}
 
 \subsection{Knihovna asyncio}
@@ -309,8 +390,23 @@
 
             \item \textit{.wait\_for()} umožňuje nastavit maximální čas čekání na dokončení. Vyvolává TimeoutError
         \end{itemize}
-        \item Ukázka
     \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Třída Task}
+    \scriptsize
+    \begin{semiverbatim}
+    async def coroutine(): 
+    	do_something()
+    	# Simulace nějaké I/O operace, na kterou je potřeba počkat
+    	await asyncio.sleep(1) 
+
+    async def main():
+        task = asyncio.create_task(coroutine(arg))
+        await task
+
+    asyncio.run(main())
+    \end{semiverbatim}
 \end{frame}
 
 \section{Nástroje externích knihoven}
