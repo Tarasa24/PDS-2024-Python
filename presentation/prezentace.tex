@@ -112,7 +112,7 @@
     \begin{itemize}
         \item Vestavený modul pro paralelní spouštění vláken
         \item Omezena GIL
-        \item Vlákna běží na stejné haldě, využívají tedy stejný paměťový prostor
+        \item Vlákna využívají stejný paměťový prostor
         \vskip 0.35in
         \item Často využíváné pro:
         \begin{itemize}
@@ -257,13 +257,13 @@
     	with cond:
     		# Nějaký kód
     		cond.wait()
-    		# Další kód kód
+    		# Další kód
     
     def function2():
     	with cond:
     		# Nějaký kód
     		cond.notify()
-    		# Další kód kód
+    		# Další kód
     \end{semiverbatim}
 \end{frame}
 
