@@ -1,17 +1,17 @@
-Python, stejně jako ostatní programovací jazyky, nabízí ve své standardní knihovně řadu nástrojů pro synchronizaci mezi procesy a vláky, což usnadňuje psaní paralelního kódu. Knihovna obsahuje dva základní moduly pro paralelizaci:
-* `threading`: pro paralelizaci pomocí vláken
-* `multiprocessing`: pro pravý paralelizmus pomocí procesů
+Python, stejně jako ostatní programovací jazyky, nabízí ve své standardní knihovně řadu nástrojů pro synchronizaci mezi procesy a vlákny, což usnadňuje psaní paralelního kódu. Knihovna obsahuje dva základní moduly pro paralelizaci:
+* `threading`: pro paralelizaci pomocí vláken.
+* `multiprocessing`: pro pravý paralelizmus pomocí procesů.
 
 Moduly obsahují různé nástroje pro synchronizaci jako jsou zámky, semafory, bariéry nebo mechanizmy pro sdílená data, což umožňuje vývojářům bezpečné spuštění paralelního kódu.
 
 # Modul Threading
 
-Tento modul umožňuje vytvářet a spravovat jednoduchá vlákna v rámci jednoho hlavního procesu. Práce s vlákny má nízkou režii, takže jsou vhodná především pro operace, které často čekají na dokončení vstupně-výstupních úloh . Vzato jsou ale omezena Gloobal Interpreter Lockem. GIL umožňuje, aby v daném okamžiku mohlo být vykonáváno pouze jedno vlákno, i když běží na vícejádrovém procesoru. Tohle omezení braní pravému paralelismu, což znamená, že vlákna nejsou vhodná pro výpočetně náročné úlohy.
+Tento modul umožňuje vytvářet a spravovat jednoduchá vlákna v rámci jednoho procesu. Práce s vlákny má nízkou režii, takže jsou vhodná především pro operace, které často čekají na dokončení vstupně-výstupních úloh. Vzato jsou ale omezena Global Interpreter Lockem. GIL umožňuje, aby v daném okamžiku mohlo být vykonáváno pouze jedno vlákno, i když běží na vícejádrovém procesoru. Tohle omezení braní pravému paralelismu, což znamená, že vlákna nejsou vhodná pro výpočetně náročné úlohy.
 
 Vlákna jsou tedy vhodná pro operace, kde závisí na rychlosti I/O operací:
-* Čtení/zápis do souboru
-* Síťové požadavky
-* Grafické uživatelské rozhraní
+* Čtení/zápis do souboru.
+* Síťové požadavky.
+* Grafické uživatelské rozhraní.
 
 Vlákna z modulu `threading` sdílí paměť v rámci jednoho procesu, což umožňuje snadnou komunikaci mezi nimi, ale zároveň se můžeme lehce dopustit chyby, při manipulaci se sdílenými daty.
 
@@ -35,11 +35,11 @@ t.join()
 
 Další užitečné funkce:
 * `is_alive()` - vrací True, pokud je vlákno stále aktivní. Pokud skončilo, vrací False.
-* `getName()` - vrací název vlákna
-* `setName()` -  můžeme změnit název vlákna
+* `getName()` - vrací název vlákna.
+* `setName()` -  můžeme změnit název vlákna.
 * `local()` - pro ukládání hodnot specifických pro konkrétní vlákna.
 #### Třída Lock
-Zámek je základní synchronizační mechanismus, který umožňuje zamezit souběžnému přístupu více vláken ke sdíleným zdrojům. Jinými slovy, zajistí, že v daný okamžik má ke sdíleným zdrojům přístup pouze jedno vlákno. Můžeme například i zamknout určitou část kódu, která se tak provede atomicky. 
+Zámek je synchronizační mechanismus, který brání souběžnému přístupu více vláken ke sdíleným zdrojům. Zajišťuje, že v daný okamžik může ke sdíleným prostředkům přistupovat pouze jedno vlákno, čímž zabraňuje možným konfliktům.
 Funkce `acquire()` se používá pro zamčení určitého bloku kódu. Pokud se jiné vlákno bude snažit dostat k zámku, zablokuje se, dokud nebude zámek uvolněn. 
 Funkce `release()` se využívá pro odemčení zámku. 
 V Pythonu je možnost využít příkazu `with`, který automaticky obalí kód těmito funkcemi, což zvyšuje čitelnost a jednoduchost kódu.
@@ -98,9 +98,9 @@ def function():
 Event je jednoduchý mechanizmus, který umožňuje vláknům spolu komunikovat. Event obsahuje interní příznak, který může nabývat hodnot `True` nebo `False`. Ostatní vlákna tak mohou čekat, až bude příznak nastaven, předtím než budou pokračovat v činnosti. Jinak řečeno, vlákna čekají než je konkrétní podmínka splněna.
 
 Pro práci s Eventem používají tyto funkce:
-* `set()` pro nastavení příznaku na `True`
-* `clear()` pro resetování příznaku na `False`
-* `wait()` zablokuje vlákno dokud není hodnota příznaku `True`
+* `set()` pro nastavení příznaku na `True`.
+* `clear()` pro resetování příznaku na `False`.
+* `wait()` zablokuje vlákno dokud není hodnota příznaku `True`.
 
 Je zde i možnost předat funkci `wait()` argument `timeout`, který umožňuje specifikovat maximální dobu. Pokud nebude příznak v tomto časovém limitu nastaven, metoda `wait()` se ukončí.
 
@@ -123,8 +123,8 @@ Na závěr máme nástroj `Condition`, který funguje obdobně jako `Event` s me
 
 Pro práci s Condition používáme funkce:
 * `wait()` zablokuje vlákno dokud není splněna podmínka, nebo nevyprší čas předaný v argumentu `timeout`.
-* `notify()` pro odblokování jednoho čekajícího vlákna
-* `notify_all()` pro odblokování všech čekajících vláken
+* `notify()` pro odblokování jednoho čekajícího vlákna.
+* `notify_all()` pro odblokování všech čekajících vláken.
 
 ```python
 cond = threading.Condition()
@@ -166,10 +166,10 @@ p.join()
 Na procesy lze navíc volat metoda `.terminate()`, která vynutí ukončení běžícího procesu. Měla by se používat omezeně, jelikož může dojít k uvedení sdílených zdrojů do nekonzistentního stavu.
 
 Užitečné atributy procesu:
-* name - vrací jméno procesu, lze nastavit při jeho vytváření.
-* pid - vrací id procesu, které přidělí operační systém.
-* daemon - vrací příznak, jestli je proces nastaven jako daemon. Daemon proces běží na pozadí a je automaticky ukončen, pokud rodičovský proces skončí.
-* is_alive - vrací příznak zda proces ještě pracuje.
+* `name` - vrací jméno procesu, lze nastavit při jeho vytváření.
+* `pid` - vrací id procesu, které přidělí operační systém.
+* `daemon` - vrací příznak, jestli je proces nastaven jako daemon. Daemon proces běží na pozadí a je automaticky ukončen, pokud rodičovský proces skončí.
+* `is_alive` - vrací příznak zda proces ještě pracuje.
 
 #### Třída Pool
 
@@ -213,8 +213,7 @@ def example_function(data,value,result):
 #### Komunikace mezi procesy
 
 Meziprocesová komunikace je další způsob, jak si procesy mohou vyměňovat data a koordinovat činnosti. Modul `multiprocessing` pro komunikaci poskytuje dva základní objekty `Queue` a `Pipe`.
-
-`Queue` First-in-First-Out datová struktura, která umožňuje procesům bezpečně posílat a příjmat data. To znamená že libovolné množství procesů může využívat stejnou frontu. Práce s frontou je jednoduchá a pracuje se s ní stejně jako s klasickou frontou.
+`Queue` je datová struktura typu *First-In-First-Out (FIFO)*, která umožňuje procesům bezpečně odesílat a přijímat data. Libovolné množství procesů může sdílet jednu frontu, což zajišťuje efektivní komunikaci mezi nimi. Práce s frontou je intuitivní – prvky se přidávají na konec a odebírají z čela. To odpovídá principu běžné fronty.
 
 ```python
 from multiprocessing import Process, Queue
@@ -254,19 +253,18 @@ def consumer(conn2)
 ```
 
 #### Synchronizace
-Modul obsahuje stejné synchronizační nástroje jako modul `threading`. Tedy nástroje `Lock`, `Semaphore`, `Barierr`, `Event`, `Condition`.
+Modul obsahuje stejné synchronizační nástroje jako modul `threading`. Tedy nástroje `Lock`, `Semaphore`, `Barrier`, `Event`, `Condition`. Tyto nástroje fungují stejně jako v modulu `threading`, takže je znovu nemusíme vysvětlovat. 
 
-Mají stejnou definici a pracuje se s nimi stejným způsobem. Jediný rozdíl je, že se musí každý objekt importovat samostatně.
-
-```python
-from multiprocessing import Lock, RLock, Semaphore, Barrier, Event, Condition
-```
+Při použití těchto nástrojů v kontextu modulu `multiprocessing` je však důležité mít na paměti, že pracují s procesy místo vláken. To znamená, že synchronizační primitiva musí být schopna fungovat mezi oddělenými procesy. Modul `multiprocessing` tuto izolaci zajišťuje pomocí mechanismů meziprocesové komunikace (IPC) pomocí:
+- Sdílené paměti.
+- Pipe a Queue.
+- Souborů nebo socketů.
 
 ## Modul Asyncio
 
 Tento modul poskytuje nástroje pro asynchronní programování v Pythonu. To umožňuje různým úkolům běžet nezávisle s možností mezi sebou přepínat, aby neblokovaly celý proces. Z toho důvodu je tento modul vhodný pro vstupně-výstupní operace jako čtení souborů, práce s databází nebo zpracování HTTP požadavků.
 
-V pythonu, na rozdíl od vláken a procesů, `asyncio` umožňuje vytvořit úkoly, které sdílí stejné vlákno, a přepínají se mez sebou bez blokování tohoto vlákna. Proto jsou vhodné pro I/O operace, jelikož nemusíme zbytečně čekat na jejich dokončení.
+V Pythonu, na rozdíl od vláken a procesů, `asyncio` umožňuje vytvořit úkoly, které sdílí stejné vlákno, a přepínají se mez sebou bez blokování tohoto vlákna. Proto jsou vhodné pro I/O operace, jelikož nemusíme zbytečně čekat na jejich dokončení.
 
 Abychom mohli pracovat s modulem, potřebujeme ho prvně importovat.
 ```python
@@ -276,7 +274,7 @@ import asyncio
 ### Klíčové koncepty
 
 #### Event Loop
-Základem konceptem modulu je událostní smyčka (Event Loop). Ta je zodpovědná za plánování, koordinaci a správu asynchronních úloh. V Pythonu se se smyčkou nepracuje přímo, ale využívá se funkcí.
+Základním konceptem modulu je událostní smyčka (Event Loop). Ta je zodpovědná za plánování, koordinaci a správu asynchronních úloh. V Pythonu se smyčkou nepracuje přímo, ale využívá se funkcí.
 Ke spuštění se využívá funkce `.run()`, které se předá korutina.
 
 ```python
