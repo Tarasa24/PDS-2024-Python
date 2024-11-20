@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "presentation/**"
 
 permissions:
   contents: write
@@ -44,9 +42,9 @@ jobs:
           path: presentation/prezentace.pdf
 
       - name: Comment on PR
-        uses: unsplash/comment-on-pr@v1
+        uses: thollander/actions-comment-pull-request@v3
         with:
-          msg: "Presentation compiled successfully. You can download it here [prezentace.pdf](${{ outputs.artifacts_url }})."
+          message: "Presentation compiled successfully. You can download it here [prezentace.pdf](${{ outputs.artifacts_url }})."
         if: github.event_name == 'pull_request'
 
   create-release:
