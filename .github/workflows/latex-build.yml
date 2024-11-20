@@ -45,7 +45,7 @@ jobs:
       - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v3
         with:
-          message: "Presentation compiled successfully. You can download it here [prezentace.pdf](${{ steps.artifacts.outputs.artifact_url }})."
+          message: "Presentation compiled successfully. You can download it here [prezentace.pdf](${{ steps.artifacts.outputs.artifact-url }})."
         if: github.event_name == 'pull_request'
 
   create-release:
