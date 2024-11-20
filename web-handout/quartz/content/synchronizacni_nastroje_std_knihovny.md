@@ -1,5 +1,5 @@
 ---
-title: Synchronizační nástroje standardní knihovny Pythonu
+title: 2. Synchronizační nástroje standardní knihovny Pythonu
 ---
 
 Python, stejně jako ostatní programovací jazyky, nabízí ve své standardní knihovně řadu nástrojů pro synchronizaci mezi procesy a vlákny, což usnadňuje psaní paralelního kódu. Knihovna obsahuje dva základní moduly pro paralelizaci:

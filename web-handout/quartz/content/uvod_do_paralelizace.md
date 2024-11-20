@@ -1,5 +1,5 @@
 ---
-title: Úvod do paralelizace v Pythonu
+title: 1. Úvod do paralelizace v Pythonu
 ---
 
 ## 1990: Počátky Pythonu a zaměření na jednoduchost
