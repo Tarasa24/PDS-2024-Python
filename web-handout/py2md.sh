@@ -22,28 +22,30 @@ if [ ! -d "$OUTPUT_DIR" ]; then
 fi
 
 # Clear the output directory
-rm -f "$OUTPUT_DIR"/*
+rm -rf "$OUTPUT_DIR"/*
 
-# Traverse through each file in the input directory
-for file in "$INPUT_DIR"/*; do
-  # Check if it's a file
-  if [ -f "$file" ]; then
-    # Extract the file name without the directory
-    base_name=$(basename "$file")
-    
-    # Ensure the new file name is constructed correctly
-    new_file="$OUTPUT_DIR/$base_name.md"
+# Traverse through each file in the input directory recursively
+find "$INPUT_DIR" -type f | while read -r file; do
+  # Extract the relative path of the file
+  relative_path="${file#$INPUT_DIR/}"
   
-    # Paste the code content
-    echo "---" > "$new_file"
-    echo "layout: code" >> "$new_file"
-    echo "title: $base_name" >> "$new_file"
-    echo "---" >> "$new_file"
-    echo "" >> "$new_file"
-    echo "\`\`\`python" >> "$new_file"
-    cat "$file" >> "$new_file"
-    echo "\`\`\`" >> "$new_file"
-    
-    echo "Processed $file -> $new_file"
-  fi
+  # Construct the output path, preserving subdirectory structure
+  output_path="$OUTPUT_DIR/$relative_path.md"
+  
+  # Ensure the output subdirectory exists
+  mkdir -p "$(dirname "$output_path")"
+  
+  # Write the content to the new file
+  {
+    echo "---"
+    echo "layout: code"
+    echo "title: $(basename "$file")"
+    echo "---"
+    echo ""
+    echo "\`\`\`python"
+    cat "$file"
+    echo "\`\`\`"
+  } > "$output_path"
+  
+  echo "Processed $file -> $output_path"
 done
