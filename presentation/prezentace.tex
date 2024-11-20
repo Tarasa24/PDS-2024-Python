@@ -185,40 +185,527 @@
 
 \section{Synchronizační nástroje standardní knihovny}
 \subsection{Knihovna threading}
+
 \begin{frame}{Knihovna threading}
+    \begin{itemize}
+        \item Vestavený modul pro paralelní spouštění vláken
+        \item Omezena GIL
+        \item Vlákna využívají stejný paměťový prostor
+        \vskip 0.35in
+        \item Často využíváné pro:
+        \begin{itemize}
+            \item I/O operace (Read/Write, Síťování, user input)
+            \item Grafické uživatelské rozhraní 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]{Třída Thread}
+    \begin{itemize}
+        \item Instance reprezentuje vlákno
+        \item Předání funkce a argumentů
+        \vskip 0.2in
 
+        \item \textit{start()} - spustí vytvořené vlákno
+        \item \textit{join()} – Počká na dokončení práce vlákna
+        \item \textit{is\_alive()} – Pracuje stále vlákno?
+        \item \textit{local()} – data konkrétního vlákna
+
+        \vskip 0.2in
+        \item Při práci s vlákny může dojít k synchronizačním problémům
+        \item Modul poskytuje mnoho synchronizačních nástrojů
+    \end{itemize}
+    \scriptsize
+
+    % t = threading.Thread(target=some_function, args=(some_arg,))
+    % t.start()
+    % # Nějaký kód
+    % t.join()
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon1.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Lock}
+    \begin{itemize}
+            \item Zajistí, že ke sdíleným zdrojům bude mít přítup pouze jedno vlákno
+            \item Můžeme zamknou příkaz nebo skupinu příkazu
+
+            \vskip 0.15in
+            \item \textit{acquire()} – zamkne objekt
+            \item \textit{release()} – odemkne objekt
+            \item klíčové slovo with - zamkne/odemkne blok automaticky
+
+            \vskip 0.15in
+            \item Varianta \textbf{RLock} pro rekurzivní funkce
+    \end{itemize}
+    \scriptsize
+
+    % lock = threading.Lock()
+    %
+    % def function():
+	%     # Nějaký kód
+	%     with lock:  
+	%         # Další kód
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon2.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Semaphore}
+    \begin{itemize}
+        \item Dokáže omezit počet vláken, které mají přístup ke zdroji
+        \item Konstruktor očekává value, určuje maximální počet přístupů ke zdroji
+        \newline (Varianta Binary Semaphore – maximálně 1 přístup)
+
+        \vskip 0.25in
+        \item \textit{acquire()} – zjistí jestli je count $>$ 0, pokud ano, dekrementuje count, jinak zablokuje vlákno
+        \item \textit{release()} – inkrementuje count, umožní tak dalšímu vláknu přístup
+        \item Opět with statement dělá automaticky
+    \end{itemize}
+    \scriptsize
+    % sem = threading.Semaphore(limit)
+    %
+    % def function():
+    %    # Nějaký kód
+    %    with sem:
+    %        # kritická sekce
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon3.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Barrier}
+    \begin{itemize}
+        \item Umožňuje zablokovat vlákna, dokud všechna nedojdou na určité místo v programu
+        \item Až všechna vlákna dosáhnou bariéry, pokračují dál v práci
+        \item Vhodné pokud vlákna pracují ve fázích, kdy po dokončení jedné se spustí další
+
+        \vskip 0.25in
+        \item \textit{wait()} – Místo, kde se vlákno zastaví, dokud ostatní vlákna k němu nedojdou
+    \end{itemize}
+    \scriptsize
+
+    % barrier = threading.Barrier(limit)
+    %
+    % def function():
+    %     # Nějaký kód
+    %     barrier.wait()
+    %     # Další kód
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon4.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Event}
+    \begin{itemize}
+        \item Jednoduchý mechanizmus, který umožňuje signalizaci mezi vlákny
+        \item Používá interní příznak, který nabývá hodnoty True nebo False
+        \vskip 0.25in
+
+        \item \textit{wait()} – vlákna budou blokována, dokud nebude flag nastaven na True
+        \item \textit{set()} – Nastaví flag na True, vlákna volající wait() budou propuštěna
+        \item \textit{clear()} – Nastaví flag na False, vlákna volající wait() budou zablokována
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Event}
+    % event = threading.Event()
+    %
+    % def function1():
+    % 	# Nějaký kód
+    % 	event.wait()
+    % 	# Další kód
+    %
+    % def function2():
+    % 	# Nějaký kód
+    % 	event.set()
+    % 	# Další kód
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon5.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Condition}
+    \begin{itemize}
+        \item Funguje obdobně, ale používá se současně se zámkem
+
+        \vskip 0.25in
+        \item \textit{wait()} – stejné, ale navíc odemkne zámek
+        \item \textit{notify()} – odblokuje jedno čekající vlákno
+        \item \textit{notify\_all()} – odblokuje všechna čekající vlákna
+    \end{itemize}
+    \scriptsize
+
+    % cond = threading.Condition()
+    %
+    % def function1():
+    % 	with cond:
+    % 		# Nějaký kód
+    % 		cond.wait()
+    % 		# Další kód
+    % 
+    % def function2():
+    % 	with cond:
+    % 		# Nějaký kód
+    % 		cond.notify()
+    % 		# Další kód
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon6.png}
+    \end{center}
 \end{frame}
 
 \subsection{Knihovna multiprocessing}
 \begin{frame}{Knihovna multiprocessing}
-
+    \begin{itemize}
+        \item Modul pro paralelizaci procesů
+        \item Nepracuje s vlákny ale s procesy
+        \item Umožňuje překonat limitace GIL
+        \item Vhodné pro složitější výpočty
+        
+        \vskip 0.3in
+        \item Výhody:
+        \begin{itemize}
+            \item Každý vytvořený proces běží nezávisle a může být vykonáván na jiných jádrech procesoru
+            \item Všechny procesy mají vlastní paměť
+            \item Vestavené metody pro bezpečnou práci se sdílenými prostředky
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
-\subsection{Knihovna concurrent.futures}
-\begin{frame}{Knihovna concurrent.futures}
+\begin{frame}[fragile]{Třída Proces}
+    \begin{itemize}
+        \item Instance reprezentuje jeden nezávislý proces
+        \item Tvorba stejná jako u threading
+        \item Stejné funkce
+        \vskip 0.25in
 
+        \item Využití Pool
+        \begin{itemize}
+            \item Umožňuje efektivně spravovat procesy
+            \item Automatizuje jejich tvorbu a rozdělení mezi jádra CPU
+            \item \textit{map()} - pro paralelní provedení funkce na každý prvek z kolekce dat
+        \end{itemize}
+    \end{itemize}
+    \scriptsize
+
+    % pool = Pool(processes=num_of_processes) 
+    % result = pool.map(some_function, iterable_data)
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon7.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Data a komunikace}
+    \begin{itemize}
+        \item Sdílení dat
+        \begin{itemize}
+            \item Modul poskytuje objekty Array a Value pro sdílení dat mezi procesy
+        \end{itemize}
+
+        \item Komunikace
+        \begin{itemize}
+            \item Pro plné využití síly procesů je potřeba komunikace mezi nimi
+            \item Objekty Queue a Pipe pro zasílání zpráv
+            \item S Queue se pracuje stejně jako s klasickou frontou
+            \item Pipe je vhodnější pro komunikaci mezi pouze dvěma procesy
+        \end{itemize}
+        \item Synchronizace
+        \begin{itemize}
+            \item Stejné nástroje pro synchronizaci jako v modulu threading
+            \item Lock, Semaphore, Barrier, Event, Condition
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Data a komunikace}
+    \scriptsize
+    % value = Value('i', init_value)  
+    % result = Array('i', size)
+    % 
+    % def example_function(data,value,result):  
+    %     for i, num in range(5):  
+    %         result[i] = num * num  
+    %         value.value += num
+    % 
+    % q = multiprocessing.Queue()
+    % conn1, conn2 = multiprocessing.Pipe()
+    % 
+    % def producer(conn,q):
+    %     q.put("Queue Message")
+    %     conn.send("Pipe Message")
+    %     conn.close()
+    % 
+    % def consumer(conn,q):
+    %     msg = q.get()
+    %     print(msg)
+    %     msg = conn.recv()
+    %     print(msg)
+    %     conn.close()
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon8.png}
+    \end{center}
 \end{frame}
 
 \subsection{Knihovna asyncio}
 \begin{frame}{Knihovna asyncio}
-
+    \begin{itemize}
+        \item Umožňuje asynchronní zpracování vstupně-výstupních operací
+        \item Založeno na kooperativním multitaskingu
+        \item Můžeme se tak vyhnout nečinnosti při čekání na dokončení I/O operací
+        \item Vhodné pro síťové operace, práce s databází, čtení souborů…
+        
+        \vskip 0.35in
+        \item \textbf{Event Loop} – koordinuje spuštění asynchronních operací
+        \item \textbf{Coroutine} – speciální asynchronní funkce
+        \item \textbf{Task} – zajišťuje běh coroutine v event loopu
+        \item \textbf{Future} – Předběžný výsledek operace, která nebyla ještě dokončena
+    \end{itemize}
 \end{frame}
+
+\begin{frame}{Třída Task}
+    \begin{itemize}
+        \item Při vytváření Tasku předáváme korutinu
+        \item Následně je její běh naplánován Event Loopem
+        \item Metody pro práci s Tasky během toho co se vykonávají
+        \begin{itemize}
+            \item \textit{.result()}
+            \item \textit{.exception()}
+            \item \textit{.cancel()}
+        \end{itemize}
+        
+        \vskip 0.25in
+        \item Další užitečné nástroje
+        \begin{itemize}
+            \item Stejné synchronizační nástroje jako v předchozích modulech
+
+            \item \textit{.wait\_for()} umožňuje nastavit maximální čas čekání na dokončení. Vyvolává TimeoutError
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Třída Task}
+    \scriptsize
+    % async def coroutine(): 
+    % 	do_something()
+    % 	# Simulace nějaké I/O operace, na kterou je potřeba počkat
+    % 	await asyncio.sleep(1) 
+    % 
+    % async def main():
+    %     task = asyncio.create_task(coroutine(arg))
+    %     await task
+    % 
+    % asyncio.run(main())
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon9.png}
+    \end{center}
+\end{frame}
+
+
+\section{Poznámka: výkonnost jazyka Python}
+\begin{frame}{Poznámka: výkonnost jazyka Python}
+	\begin{itemize}
+    \item Nejde jazyk Python naproti samotné podstatě paralelizace?
+    \begin{itemize}
+      \item [\textendash] Známý pro svou nevýkonnost (daň za velkou abstrakci)      
+      \item [\textendash] GIL (dnes již volitelný)
+    \end{itemize}
+
+    \item I přes omezení GIL má paralelizace opodstatnění, pokud musí vlákna často čekat na externí události (I/O)
+    \begin{itemize}
+      \item obsluha klienta, databáze...
+      \item framework \textbf{asyncio} (asynchronní programování)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\section{Řešení problémů paralelizace a výkonu v Pythonu}
+\begin{frame}{Řešení problémů paralelizace a výkonu v Pythonu}
+  \begin{enumerate}
+    \item Použití Multiprocessing 
+    \begin{itemize}
+      \item [\textendash] Poněkud těžkopadné
+      \item [\textendash] Náročná správa komunikace (nesdílejí paměť)
+    \end{itemize}
+
+    \item Použití jiné implementace Pythonu s JIT kompilací
+    \begin{itemize}
+      \item [\textendash] Dynamická kompilace do strojového kódu, optimalizace
+      \item [\textendash] \textbf{Numba}, PyPy, Jyphon (JVM), IronPython (CLR)\dots
+      \item [\textendash] Některé nejsou omezeny GIL
+    \end{itemize}
+
+    \item Statická kompilace do nižšího jazyka
+    \begin{itemize}
+      \item [\textendash] \href{https://cython.org/}{Cython}, \href{https://github.com/mypyc/mypyc}{mypyc}\dots
+    \end{itemize}
+
+    \item Použití externích knihoven
+    \begin{itemize}
+      \item [\textendash] Python slouží jako jakási vysokoúrovňová "fasáda"
+      \item [\textendash] Pro "CPU-bound" operace se volají metody implementované v nižších jazycích (C, C++...)
+      \item [\textendash] Tyto jazyky nejsou omezeny GIL, mohou (volně) využívat paralelizace
+    \end{itemize}
+
+    \item Nepoužívat Python
+  \end{enumerate}
+\end{frame}
+
 
 \section{Nástroje externích knihoven}
 \begin{frame}{Nástroje externích knihoven}
+	\begin{itemize}
+    \item Dask
+      \begin{itemize}
+        \item [\textendash] Navržena pro \textbf{paralelizovaný} i \textbf{distribuovaný výpočet} na rozsáhlých datech
 
+        \item [\textendash] Rozděluje úlohy do menších částí (\textit{tasks}) a vytváří graf závislostí, kterým se řídí následný výpočet
+
+        \item [\textendash] \textbf{Threaded-, Multiprocessing-, Distributed-} scheduler
+
+        \item [\textendash] Využívá dalších knihoven jako jsou NumPy, Pandas a dalších pro rychlejší nízkoúrovňové výpočty
+      \end{itemize}
+    \item Další:
+      \begin{itemize}
+        \item [\textendash] Ray
+        \item [\textendash] Celery\dots
+      \end{itemize}
+  \end{itemize}
 \end{frame}
+
 
 \section{Nástroje pro distribuované systémy}
 \subsection{Knihovna socket}
 \begin{frame}{Knihovna socket}
+	\begin{itemize}
+		\item Modul \texttt{socket} je základní nástroj pro implementaci síťové komunikace.
+		\item Je \textbf{nízkoúrovňový} – jsou na něm založeny všechny ostatní moduly Pythonu vyšší úrovně pro propojení v síti.
+		\item Podporuje většinu běžných protokolů, včetně TCP a UDP.
+		\item \textbf{Výhody:}
+		\begin{itemize}
+			\item Přímá kontrola nad socketovou komunikací.
+			\item Flexibilita pro implementaci vlastních protokolů.
+		\end{itemize}
+		\item \textbf{Nevýhody:}
+		\begin{itemize}
+			\item Vyžaduje znalosti síťových protokolů.
+			\item Implementace složitější logiky (např. HTTPS) je náročnější.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
 
+\begin{frame}{Knihovna socket - tvorba socketu}
+    % import socket
+    % 
+    % socket = socket.socket(
+    % 	family=AF\_INET,
+    % 	type=SOCK\_STREAM
+    % )
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon10.png}
+    \end{center}
+	\begin{itemize}
+		\item \texttt{family}  - určuje, jaký protokol se použije na síťové vrstvě.
+		\begin{itemize}
+			\item \texttt{socket.AF\_INET} - pro IPv4 adresy.
+			\item \texttt{socket.AF\_INET6} - pro IPv6 adresy.
+			\item \texttt{socket.AF\_UNIX} - Unixový socket (pro lokální komunikaci mezi procesy).
+		\end{itemize}
+		\item \texttt{type} - určuje, jaký protokol se použije na transportní vrstvě.
+		\begin{itemize}
+			\item \texttt{socket.SOCK\_STREAM} - používá TCP protokol.
+			\item \texttt{socket.SOCK\_DGRAM} - používá UDP protokol.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Knihovna socket - odeslání zprávy}
+	% s.connect(('localhost', 12345)) \# navázání spojení
+	% s.sendall(b'Ahoj!') \# odešle všechna data
+	% s.close() \# ukončí socket s
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon11.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Knihovna socket - poslouchání  a přijímání dat}
+	% addr = ('localhost', 12345) \# adresa na které posloucháme
+	% s.bind(addr) \# přiřadí socket k adrese
+	% s.listen() \# umožňuje přijímat příchozí připojení
+	% conn, addr = s.accept() \# čeká se na příchozí připojení
+	% print(f'Připojeno: {addr}')
+	% data = conn.recv(1024) \# přijme data, max. 1024B
+	% conn.sendall(b'Ahoj!') \# pošle odpověď
+	% conn.close() \# ukončí socket conn
+	% s.close() \# ukončí socket s
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon12.png}
+    \end{center}
 \end{frame}
 
 \subsection{Knihovna http.server}
+\begin{frame}{Knihovna http}
+	\begin{itemize}
+		\item Modul \texttt{http} v Pythonu poskytuje nástroje pro práci s protokolem HTTP.
+		\item Je rozdělen na několik podmodulů:
+		\begin{itemize}
+			\item Mezi ně patří např.: \texttt{http.client}, \texttt{http.server}, \texttt{http.cookies} \ldots
+		\end{itemize}
+		\item Využívá ho mnoho vyšších knihoven, jako je \texttt{requests} nebo \texttt{flask}.
+		\item \textbf{Výhody:}
+		\begin{itemize}
+			\item Vyšší úroveň abstrakce.
+			\item Snazší implementace běžných HTTP funkcionalit.
+		\end{itemize}
+		\item \textbf{Nevýhody:}
+		\begin{itemize}
+			\item Omezená flexibilita ve srovnání s nízkoúrovňovou komunikací pomocí \texttt{socket}.
+		\end{itemize}
+	\end{itemize}	
+\end{frame}
 \begin{frame}{Knihovna http.server}
+	% from http.server import HTTPServer, BaseHTTPRequestHandler
+    % 
+	% class MyHandler(BaseHTTPRequestHandler):
+    % 
+	% 	 \# Definujeme metodu pro zpracování GET požadavků
+	% 	def do\_GET(self):
+	% 		pass
+    % 
+	% server = HTTPServer(("localhost", 8000), MyHandler)
+	% print("Server bezi na portu 8000...")
+	% server.serve\_forever()
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon13.png}
+    \end{center}
 
+	\begin{itemize}
+		\item Dva typy serverů:
+		\begin{itemize}
+			\item \texttt{http.server.HTTPServer(args)}.
+			\item \texttt{http.server.ThreadingHTTPServer(args)}.
+		\end{itemize}
+		\item Argumenty \texttt{args}:
+		\begin{itemize}
+			\item \texttt{server\_address} - dvojice IP adresa, port.
+			\item \texttt{RequestHandlerClass} - zpracovává příchozí HTTP požadavky (např. GET, POST) a definuje, jak server na tyto požadavky odpoví.
+		\end{itemize}
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}{Knihovna http.server}
+	% def do\_GET(self):
+	% 	\# Odeslání odpovědi s kódem 200 (OK)
+	% 	self.send\_response(200)
+	% 	\# Nastavení hlavičky Content-Type pro HTML obsah
+	% 	self.send\_header("Content-type", "text/html") 
+	% 	self.end\_headers()
+	% 	\# Odeslání těla odpovědi – text "Hello, World!"     
+	% 	self.wfile.write(b"Hello, World!")
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{obrazky/codes/carbon14.png}
+    \end{center}
 \end{frame}
 
 \subsection{RabbitMQ}
