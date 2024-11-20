@@ -9,7 +9,7 @@ Vítejte na úvodní stránce handoutu, který vám poskytne základy a praktick
 ## Obsah
 
 1. [Úvod do paralelizace v Pythonu](uvod_do_paralelizace.md)
-   Ořibližuje vývoj paralelizace v Pythonu od zavedení GIL, jeho omezení na vícejádrových procesorech, až po moderní přístupy jako multiprocessing, concurrent.futures a asyncio. Nabízí také pohled na budoucnost Pythonu bez GIL díky PEP 703.
+   Přibližuje vývoj paralelizace v Pythonu od zavedení GIL, jeho omezení na vícejádrových procesorech, až po moderní přístupy jako multiprocessing, concurrent.futures a asyncio. Nabízí také pohled na budoucnost Pythonu bez GIL díky PEP 703.
 
 2. [Synchronizační nástroje standardní knihovny Pythonu](synchronizacni_nastroje_std_knihovny.md)
    Podrobný přehled o modulech `threading`, `multiprocessing`, a `asyncio`, které Python nabízí pro paralelní a asynchronní programování.
