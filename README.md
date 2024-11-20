@@ -44,7 +44,7 @@ Then you can proceed with generating the web-handout as a whole. Navigate to the
   npm install
   npx quartz build
   # or if you want to serve the web-handout locally
-  npm quartz build --serve
+  npx quartz build --serve
 ```
 
 ### ...contribute with least effort?
