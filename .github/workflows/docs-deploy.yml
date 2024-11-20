@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Load web-handout/quartz/.node-version
         id: node-version
         run: echo "::set-output name=node-version::$(cat web-handout/quartz/.node-version)"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ steps.node-version.outputs.node-version }}
 
@@ -46,6 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         id: upload
         with:
+          name: public
           path: ./web-handout/quartz/public
 
   deploy:
