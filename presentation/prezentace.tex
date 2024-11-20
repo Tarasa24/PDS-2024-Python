@@ -502,36 +502,35 @@
 \end{frame}
 
 
-\section{Poznámka: výkonnost jazyka Python}
-\begin{frame}{Poznámka: výkonnost jazyka Python}
+\section{Poznámka k paralelizaci a výkonnosti v Pythonu}
+\begin{frame}{Poznámka k paralelizaci a výkonnosti v Pythonu}
 	\begin{itemize}
     \item Nejde jazyk Python naproti samotné podstatě paralelizace?
     \begin{itemize}
       \item [\textendash] Známý pro svou nevýkonnost (daň za velkou abstrakci)      
-      \item [\textendash] GIL (dnes již volitelný)
+      \item [\textendash] GIL
     \end{itemize}
 
     \item I přes omezení GIL má paralelizace opodstatnění, pokud musí vlákna často čekat na externí události (I/O)
     \begin{itemize}
-      \item obsluha klienta, databáze...
-      \item framework \textbf{asyncio} (asynchronní programování)
+      \item [\textendash] obsluha webových klientů, databáze...
+      \item [\textendash] framework \textbf{asyncio} (asynchronní programování)
     \end{itemize}
   \end{itemize}
 \end{frame}
 
 
-\section{Řešení problémů paralelizace a výkonu v Pythonu}
-\begin{frame}{Řešení problémů paralelizace a výkonu v Pythonu}
+\subsection{Řešení k problémům paralelizace a výkonu v Pythonu}
+\begin{frame}{Řešení k problémům paralelizace a výkonu v Pythonu}
   \begin{enumerate}
     \item Použití Multiprocessing 
     \begin{itemize}
-      \item [\textendash] Poněkud těžkopadné
-      \item [\textendash] Náročná správa komunikace (nesdílejí paměť)
+      \item [\textendash] Náročnější správa komunikace (nesdílejí paměť)
     \end{itemize}
 
     \item Použití jiné implementace Pythonu s JIT kompilací
     \begin{itemize}
-      \item [\textendash] Dynamická kompilace do strojového kódu, optimalizace
+      \item [\textendash] Výhodné pro déle trvající procesy
       \item [\textendash] \textbf{Numba}, PyPy, Jyphon (JVM), IronPython (CLR)\dots
       \item [\textendash] Některé nejsou omezeny GIL
     \end{itemize}
@@ -543,7 +542,7 @@
 
     \item Použití externích knihoven
     \begin{itemize}
-      \item [\textendash] Python slouží jako jakási vysokoúrovňová "fasáda"
+      \item [\textendash] Python poskytuje pouze vysokoúrovňové rozhraní
       \item [\textendash] Pro "CPU-bound" operace se volají metody implementované v nižších jazycích (C, C++...)
       \item [\textendash] Tyto jazyky nejsou omezeny GIL, mohou (volně) využívat paralelizace
     \end{itemize}
@@ -553,7 +552,7 @@
 \end{frame}
 
 
-\section{Nástroje externích knihoven}
+\subsection{Nástroje externích knihoven}
 \begin{frame}{Nástroje externích knihoven}
 	\begin{itemize}
     \item Dask
@@ -574,6 +573,45 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Paralelní zpracování souborů}
+  %   def process_file(file_name):
+  %     with open(file_name, "r") as f:
+  %         return len(f.read())
+
+  % if __name__ == "__main__":
+  %     # Namapování funkce, která se paralelně aplikuje na každý soubor
+  %     bag = db.from_sequence(files)
+  %     mapping = bag.map(process_file)
+
+  %     sum_tasks = mapping.sum() #... vytvoření "grafu úloh"
+
+  %     # K veškerému výpočtu dojde až zavoláním .compute()
+  %     print("Total number of characters:", sum_tasks.compute())
+    \begin{center}
+
+    \end{center}
+\end{frame}
+
+
+
+\begin{frame}{Odkládání výpočtu}
+  % @dask.delayed
+  % def inc(x):
+  %    return x + 1
+
+  % @dask.delayed
+  % def add(x, y):
+  %    return x + y
+  
+  % a = inc(1)       \# neprovede výpočet
+  % b = inc(2)       \# neprovede výpočet
+  % c = add(a, b)    \# neprovede výpočet
+  
+  % c = c.compute()  \# Vykoná všechny výpočty výše
+    \begin{center}
+
+    \end{center}
+\end{frame}
 
 \section{Nástroje pro distribuované systémy}
 \subsection{Knihovna socket}
