@@ -57,9 +57,6 @@ const config: QuartzConfig = {
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
-      }),
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
@@ -80,7 +77,6 @@ const config: QuartzConfig = {
       Plugin.ComponentResources(),
       Plugin.ContentPage(),
       Plugin.FolderPage(),
-      Plugin.TagPage(),
       Plugin.ContentIndex({
         enableSiteMap: true,
         enableRSS: true,

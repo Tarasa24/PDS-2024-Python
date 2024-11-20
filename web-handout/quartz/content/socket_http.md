@@ -1,5 +1,5 @@
 ---
-title: Komunikace pomocí soketů a HTTP
+title: 5. Komunikace pomocí soketů a HTTP
 ---
 
 # Modul `socket`

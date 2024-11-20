@@ -1,5 +1,5 @@
 ---
-title: Práce s RabbitMQ
+title: 4. Práce s RabbitMQ
 ---
 
 ## Co je RabbitMQ?
