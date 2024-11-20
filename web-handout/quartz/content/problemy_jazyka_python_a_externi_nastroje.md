@@ -1,3 +1,7 @@
+---
+title: Problémy jazyka Python a externí nástroje
+---
+
 ## Problémy jazyka Python
 - Účelem paralelizace je maximalizovat použití výpočetních zdrojů, nejde tím ale Python trochu naproti?
 	- Python je znám pro svou **nevýkonnost**

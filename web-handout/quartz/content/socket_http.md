@@ -1,3 +1,7 @@
+---
+title: Komunikace pomocí soketů a HTTP
+---
+
 # Modul `socket`
  - https://docs.python.org/3/library/socket.html
  - Modul `socket` je základní nástroj pro implementaci síťové komunikace. 

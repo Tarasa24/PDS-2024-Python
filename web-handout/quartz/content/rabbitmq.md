@@ -1,4 +1,7 @@
-# RabbitMQ
+---
+title: Práce s RabbitMQ
+---
+
 ## Co je RabbitMQ?
 RabbitMQ je message broker implementující protokol AMQP (Advanced Message Queuing Protocol). Umožňuje komunikaci mezi aplikacemi nebo jejich komponentami. RabbitMQ umožňuje oddělení producentů a konzumentů, což podporuje asynchronní komunikaci.
 

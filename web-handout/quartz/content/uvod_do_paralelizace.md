@@ -1,4 +1,7 @@
-# Úvod do paralelizace v Pythonu
+---
+title: Úvod do paralelizace v Pythonu
+---
+
 ## 1990: Počátky Pythonu a zaměření na jednoduchost
 Python byl vytvořen [Guidem van Rossumem](https://en.wikipedia.org/wiki/Guido_van_Rossum) jako jazyk zaměřený na čitelnost a jednoduchost. První verze Pythonu z roku 1990 nepočítala s pokročilými nástroji pro paralelizaci, což bylo částečně dáno tím, že hardware v té době nebyl tak paralelizací posedlý jako dnes. Vývojáři se většinou spoléhali na jednovláknové aplikace, protože vícejádrové procesory a masivní paralelizace byly stále v plenkách. Tento důraz na jednoduchost ovlivnil mnoho rozhodnutí v návrhu Pythonu, včetně způsobu správy paměti, což se později stalo významným faktorem v omezení paralelizace.
 
