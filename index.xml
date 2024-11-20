@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>🐍 PDS 2024 Python</title>
+      <link>https://https://tarasa24.github.io/PDS-2024-Python/</link>
+      <description>Last 10 notes on 🐍 PDS 2024 Python</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>client.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/client.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/client.py</guid>
+    <description>import socket import struct import time import pickle # Import pickle pro serializaci dat SERVER_ADR = (&#039;localhost&#039;, 12345) def start_client(message): # Vytvoření ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>server_http.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server_http.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server_http.py</guid>
+    <description>from http.server import HTTPServer, BaseHTTPRequestHandler # Jednoduchá databáze database = {1: [&quot;Karel&quot;, &quot;Novy&quot;], 2: [&quot;Marek&quot;, &quot;Modry&quot;]} ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>server.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server.py</guid>
+    <description>import socket import threading import struct import time import pickle # Přidání knihovny pickle from typing import Tuple # Jednoduchá databáze database = {1: [&quot;Karel&quot;, ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>RabbitMQ_reliability.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_reliability.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_reliability.py</guid>
+    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>RabbitMQ_realtime.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_realtime.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_realtime.py</guid>
+    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>RabbitMQ_fanout.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_fanout.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_fanout.py</guid>
+    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>RabbitMQ_consumer.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_consumer.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_consumer.py</guid>
+    <description>import pika def callback(ch, method, properties, body): print(f&quot; [x] Přijatá zpráva: {body}&quot;) # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>RabbitMQ_producent.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_producent.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_producent.py</guid>
+    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>threading_semaphore.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_semaphore.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_semaphore.py</guid>
+    <description>import threading, time # Vytvoříme semafor, určíme max počet přístupů. sem = threading.Semaphore(3) # Vlákno pro práci se zdrojem, zkontrolujeme semafor.</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item><item>
+    <title>threading_condition.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_condition.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_condition.py</guid>
+    <description>import threading, time cond = threading.Condition() # Konzumer bude čekat na splnění podmínky producenta def consumer(id): with cond: cond.wait() print(&quot;Konzumer {} obdržel ...</description>
+    <pubDate>Wed, 20 Nov 2024 18:00:04 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
