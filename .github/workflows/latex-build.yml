@@ -35,7 +35,7 @@ jobs:
           pdflatex -file-line-error -output-directory=presentation presentation/prezentace.tex
 
       - name: Create artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: prezentace
           path: presentation/prezentace.pdf
@@ -46,7 +46,7 @@ jobs:
     if: github.ref == 'refs/tags/v*'
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: prezentace
       - name: Create release with compiled presentation (tag push only)
@@ -60,7 +60,7 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: prezentace
       - name: Comment on pull request with compiled presentation
