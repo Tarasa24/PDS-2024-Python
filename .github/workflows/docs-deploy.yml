@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "v*"
-  pull_request_target:
+  pull_request:
     branches:
       - main
     paths:
@@ -65,7 +65,7 @@ jobs:
 
       - name: Deploy PR preview
         uses: rossjrw/pr-preview-action@v1
-        if: github.event_name == 'pull_request_target'
+        if: github.event_name == 'pull_request'
         with:
           source-dir: web-handout/quartz/public
 
