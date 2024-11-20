@@ -6,65 +6,65 @@
       <description>Last 10 notes on 🐍 PDS 2024 Python</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>client.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/client.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/client.py</guid>
-    <description>import socket import struct import time import pickle # Import pickle pro serializaci dat SERVER_ADR = (&#039;localhost&#039;, 12345) def start_client(message): # Vytvoření ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
-  </item><item>
-    <title>server_http.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/server_http.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/server_http.py</guid>
-    <description>from http.server import HTTPServer, BaseHTTPRequestHandler # Jednoduchá databáze database = {1: [&quot;Karel&quot;, &quot;Novy&quot;], 2: [&quot;Marek&quot;, &quot;Modry&quot;]} ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
-  </item><item>
-    <title>server.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/server.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/http_socket/server.py</guid>
-    <description>import socket import threading import struct import time import pickle # Přidání knihovny pickle from typing import Tuple # Jednoduchá databáze database = {1: [&quot;Karel&quot;, ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>RabbitMQ_realtime.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_realtime.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_realtime.py</guid>
+    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
     <title>RabbitMQ_reliability.py</title>
     <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_reliability.py</link>
     <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_reliability.py</guid>
     <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>RabbitMQ_realtime.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_realtime.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_realtime.py</guid>
-    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>client.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/client.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/client.py</guid>
+    <description>import socket import struct import time import pickle # Import pickle pro serializaci dat SERVER_ADR = (&#039;localhost&#039;, 12345) def start_client(message): # Vytvoření ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>RabbitMQ_fanout.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_fanout.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_fanout.py</guid>
-    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>server.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/server.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/server.py</guid>
+    <description>import socket import threading import struct import time import pickle # Přidání knihovny pickle from typing import Tuple # Jednoduchá databáze database = {1: [&quot;Karel&quot;, ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>RabbitMQ_consumer.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_consumer.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_consumer.py</guid>
-    <description>import pika def callback(ch, method, properties, body): print(f&quot; [x] Přijatá zpráva: {body}&quot;) # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>server_http.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/server_http.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/socket_http/server_http.py</guid>
+    <description>from http.server import HTTPServer, BaseHTTPRequestHandler # Jednoduchá databáze database = {1: [&quot;Karel&quot;, &quot;Novy&quot;], 2: [&quot;Marek&quot;, &quot;Modry&quot;]} ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>RabbitMQ_producent.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_producent.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/rabbitmq_examples/RabbitMQ_producent.py</guid>
-    <description>import pika # Navázání spojení s RabbitMQ serverem connection = pika.BlockingConnection(pika.ConnectionParameters(&#039;localhost&#039;)) channel = connection.channel() ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>asyncio.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/asyncio.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/asyncio.py</guid>
+    <description>import asyncio # Definování korutiny async def download_file(id): print(&quot;Stahuji soubor {}&quot;.format(id)) # Simulace čekání na stažení nějakého souboru await asyncio.sleep(1) ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>parallel_mapping.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/dask/parallel_mapping.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/dask/parallel_mapping.py</guid>
-    <description>import dask.bag as db # Cesty ke zpracovávaným souborům files = [&quot;file1.txt&quot;, &quot;file2.txt&quot;, &quot;file3.txt&quot;, &quot;file4.txt&quot;] # Funkce, ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>multiprocessing_pool.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_pool.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_pool.py</guid>
+    <description>from multiprocessing import Pool # Funkce pro výpočet mocniny dvěma def do_something(x): return x * x # Vytvoříme pool, kterému předáme kolekci dat a funkci kterou paralelně provede ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item><item>
-    <title>delayed_computation.py</title>
-    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/dask/delayed_computation.py</link>
-    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/dask/delayed_computation.py</guid>
-    <description>import dask @dask.delayed def inc(x): return x + 1 @dask.delayed def add(x, y): return x + y # Vyhodnocením se pouze vytváří graf úloh a = inc(1) # nevykoná výpočet b = inc(2) # nevykoná ...</description>
-    <pubDate>Wed, 20 Nov 2024 20:35:32 GMT</pubDate>
+    <title>multiprocessing_process.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_process.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_process.py</guid>
+    <description>from multiprocessing import Process import time, random def process_function(process_id): print(&quot;Proces {} začal práci.&quot;.format(process_id)) time.sleep(random.randint(1, ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
+  </item><item>
+    <title>multiprocessing_qpipe.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_qpipe.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_qpipe.py</guid>
+    <description>import multiprocessing from multiprocessing import Process, Queue def producer(conn,q): q.put(&quot;Queue Message&quot;) conn.send(&quot;Pipe Message&quot;) conn.close() ...</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
+  </item><item>
+    <title>multiprocessing_valarray.py</title>
+    <link>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_valarray.py</link>
+    <guid>https://https:/tarasa24.github.io/PDS-2024-Python/codes/synchronization_tools/multiprocessing_valarray.py</guid>
+    <description>from multiprocessing import Process, Value, Array # Funkce vypočítá mocniny dvou v poli a udělá součet všech hodnot. def process_function(data,sum,squares): for i, num in enumerate(data): squares[i] = num * num sum.value += squares[i] def process_run(): data = [1,2,3,4] # Vytvoříme objekty pro sdílení proměnných mezi procesy sum = Value(&#039;i&#039;, 0) squares = Array(&#039;i&#039;, 4) p = Process(target=process_function, args=(data,sum,squares,)) p.start() p.join() print(&quot;Squares: {}&quot;.format(squares[:])) print(&quot;Sum: {}&quot;.format(sum.value)) if __name__ == &quot;__main__&quot;: process_run()```.</description>
+    <pubDate>Wed, 20 Nov 2024 21:49:02 GMT</pubDate>
   </item>
     </channel>
   </rss>
