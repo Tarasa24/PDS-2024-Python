@@ -38,9 +38,9 @@ Všechny ukázky uvedené v handoutu si můžete prohlédnout a spustit. Kódy j
 
 ---
 
-## Související prezentace
+## Doprovodná prezentace
 
-Kromě textového handoutu je k dispozici také prezentace, která shrnuje klíčové body jednotlivých kapitol. Prezentace je k dispozici ve formátu PDF a je možné ji stáhnout zde: [PDS 2024 - Python Prezentace](https://github.com/Tarasa24/PDS-2024-Python/releases/latest/download/prezentace.pdf)
+Kromě textového handoutu je k dispozici také prezentace, která shrnuje klíčové body jednotlivých kapitol. Prezentace je k ve formátu PDF a je možné ji stáhnout zde: [PDS 2024 - Python Prezentace](https://github.com/Tarasa24/PDS-2024-Python/releases/latest/download/prezentace.pdf)
 
 ---
 
