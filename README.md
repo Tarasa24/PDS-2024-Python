@@ -14,16 +14,16 @@ This repository serves as a a colaboration space for students selected to presen
 ## How do I...?
 
 ### ...view the presentation?
-Open the latest release and download the `pdf` file. https://tarasa24.github.io/PDS-2024-Python/
+Open the [latest release](https://github.com/Tarasa24/PDS-2024-Python/releases/latest) and download the attached pdf file. Alternatively, you can generate the pdf presentation yourself.
 
 ### ...view the code examples?
-Navigate to the `code` directory in the [web-handout](https://tarasa24.github.io/PDS-2024-Python/) and select the desired topic.
+Navigate to the `codes` directory in the [web-handout](https://tarasa24.github.io/PDS-2024-Python/codes) and select the desired topic.
 
 ### ...embed code snippets in my presentation?
-Open the [Carbon Code Visualizer](https://carbon.now.sh/) in the browser of your choice. Roughly match the settings to the ones used in the repository. Copy over your code and generate the image. Download the image and embed it in the presentation.
+Open the [Carbon Code Visualizer](https://carbon.now.sh/) in the browser of your choice. Roughly match the settings to the ones used in the repository. Copy over your code and generate the image.
 
 ### ...generate the pdf presentation?
-Make sure you have TeX Live package installed on your system (texlive-latex-base, texlive-latex-recommended, texlive-fonts-recommended, texlive-latex-extra and texlive-lang-czechslovak). Navigate to the `presentation` directory and run the following commands:
+Make sure you have TeX Live package installed on your system (`texlive-latex-base`, `texlive-latex-recommended`, `texlive-fonts-recommended`, `texlive-latex-extra` and `texlive-lang-czechslovak`). Then run the following commands in the root directory of the repository.
 
 ```bash
   pdflatex -file-line-error -output-directory=presentation presentation/prezentace.tex
@@ -33,7 +33,7 @@ Make sure you have TeX Live package installed on your system (texlive-latex-base
 That is not a typo, you need to run the command twice to generate the table of contents.
 
 ### ...generate the web-handouts?
-Firstly make sure to generate markdown from code snippets using provided `py2md.sh` script. 
+**Firstly make sure to generate markdown from code snippets using provided `py2md.sh` script.**
 ```bash
   ./web-handout/py2md.sh codes/ web-handout/quartz/content/codes/
 ```
