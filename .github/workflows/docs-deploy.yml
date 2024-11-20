@@ -33,18 +33,20 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: web-handout/quartz
 
       - name: Build code snippets
         run: ./web-handout/py2md.sh codes/ web-handout/quartz/content/codes/
 
       - name: Build Quartz site
         run: npx quartz build
+        working-directory: web-handout/quartz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         id: upload
         with:
-          path: public
+          path: ./web-handout/quartz/public
 
   deploy:
     runs-on: ubuntu-22.04
