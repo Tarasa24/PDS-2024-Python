@@ -6,9 +6,9 @@ on:
       - "v*"
   pull_request:
     branches:
-      - main 
+      - main
     paths:
-      - 'presentation/**' 
+      - "presentation/**"
 
 permissions:
   contents: write
@@ -43,6 +43,12 @@ jobs:
           name: prezentace
           path: presentation/prezentace.pdf
 
+      - name: Comment on PR
+        uses: unsplash/comment-on-pr@v1
+        with:
+          msg: "Presentation compiled successfully. You can download it here [prezentace.pdf](${{ outputs.artifacts_url }})."
+        if: github.event_name == 'pull_request'
+
   create-release:
     runs-on: ubuntu-latest
     needs: compile-latex
@@ -57,19 +63,3 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: prezentace.pdf
-
-  comment-on-pr:
-    runs-on: ubuntu-latest
-    needs: compile-latex
-    if: github.event_name == 'pull_request'
-
-    steps:
-      - name: Generate artifact URL
-        id: artifact-link
-        run: echo "artifact_url=https://github.com/${{ github.repository }}/actions/artifacts/${{ github.run_id }}" >> $GITHUB_ENV
-
-      - name: Comment on pull request with compiled presentation
-        uses: thollander/actions-comment-pull-request@v3
-        with:
-          message: |
-            Compiled presentation is available [here](${{ env.artifact_url }})
