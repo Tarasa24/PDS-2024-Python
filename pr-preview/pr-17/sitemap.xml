@@ -1,76 +1,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/client.py</loc>
-    <lastmod>2024-11-20T17:46:33.287Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.607Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server.py</loc>
-    <lastmod>2024-11-20T17:46:33.279Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.599Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/http_socket/server_http.py</loc>
-    <lastmod>2024-11-20T17:46:33.283Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.603Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_consumer.py</loc>
-    <lastmod>2024-11-20T17:46:33.259Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.575Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_fanout.py</loc>
-    <lastmod>2024-11-20T17:46:33.263Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.583Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_producent.py</loc>
-    <lastmod>2024-11-20T17:46:33.251Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.571Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_realtime.py</loc>
-    <lastmod>2024-11-20T17:46:33.267Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.587Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/rabbitmq_examples/RabbitMQ_reliability.py</loc>
-    <lastmod>2024-11-20T17:46:33.271Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.591Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/asyncio.py</loc>
-    <lastmod>2024-11-20T17:46:33.235Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.551Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/multiprocessing_pool.py</loc>
-    <lastmod>2024-11-20T17:46:33.207Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.527Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/multiprocessing_process.py</loc>
-    <lastmod>2024-11-20T17:46:33.199Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.519Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/multiprocessing_qpipe.py</loc>
-    <lastmod>2024-11-20T17:46:33.203Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.523Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/multiprocessing_valarray.py</loc>
-    <lastmod>2024-11-20T17:46:33.227Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.547Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_barrier.py</loc>
-    <lastmod>2024-11-20T17:46:33.223Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.543Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_condition.py</loc>
-    <lastmod>2024-11-20T17:46:33.243Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.563Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_event.py</loc>
-    <lastmod>2024-11-20T17:46:33.215Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.531Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_lock.py</loc>
-    <lastmod>2024-11-20T17:46:33.219Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.539Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_semaphore.py</loc>
-    <lastmod>2024-11-20T17:46:33.247Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.567Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/codes/codes/synchronization_tools/threading_thread.py</loc>
-    <lastmod>2024-11-20T17:46:33.239Z</lastmod>
+    <lastmod>2024-11-20T17:48:05.555Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/problemy_jazyka_python_a_externi_nastroje</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/rabbitmq</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/socket_http</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/synchronizacni_nastroje_std_knihovny</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url><url>
     <loc>https://https:/tarasa24.github.io/PDS-2024-Python/uvod_do_paralelizace</loc>
-    <lastmod>2024-11-20T17:46:19.026Z</lastmod>
+    <lastmod>2024-11-20T17:47:51.716Z</lastmod>
   </url></urlset>
