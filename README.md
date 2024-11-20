@@ -9,7 +9,7 @@ Parallel and Distributed Systems primiteves using Python. Created as a part of K
 
 ## General info
 
-This repository serves as a a colaboration space for students selected to present Python as a part of the PDS 2024 course at [UPOL University in Olomouc](https://www.inf.upol.cz/). The main goal is to provide a comprehensive overview of parallel and distributed systems primitives using Python programming language. The repository is divided into several sections, each of which covers a specific topic. The topics are presented in the form of a presentation, code examples, and web-handouts.
+This repository serves as a a colaboration space for students selected to present Python as a part of the PDS 2024 course at [UPOL University in Olomouc](https://www.inf.upol.cz/). The main goal is to provide a comprehensive overview of parallel and distributed systems primitives using Python programming language. The repository is divided into several sections, each of which covers a specific topic. The topics are presented in the form of a presentation, code examples, and web-handout.
 
 ## How do I...?
 
@@ -32,7 +32,7 @@ Make sure you have TeX Live package installed on your system (`texlive-latex-bas
 
 That is not a typo, you need to run the command twice to generate the table of contents.
 
-### ...generate the web-handouts?
+### ...generate the web-handout?
 **Firstly make sure to generate markdown from code snippets using provided `py2md.sh` script.**
 ```bash
   ./web-handout/py2md.sh codes/ web-handout/quartz/content/codes/
@@ -60,6 +60,6 @@ Simply open new pull request with your changes. Make sure to follow the reposito
 - **Code**:
   - [Python](https://www.python.org/)
   - [Carbon Code Visualizer](https://carbon.now.sh/)
-- **Web-Handouts**:
+- **Web-Handout**:
   - [Markdown](https://www.markdownguide.org/)
   - [Quartz 4](https://quartz.jzhao.xyz/)
