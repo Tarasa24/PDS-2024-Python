@@ -64,8 +64,12 @@ jobs:
     if: github.event_name == 'pull_request'
 
     steps:
+      - name: Generate artifact URL
+        id: artifact-link
+        run: echo "artifact_url=https://github.com/${{ github.repository }}/actions/artifacts/${{ github.run_id }}" >> $GITHUB_ENV
+
       - name: Comment on pull request with compiled presentation
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
-            Compiled presentation is available [here](${{ steps.compile-latex.outputs.artifacts_url }}).
+            Compiled presentation is available [here](${{ env.artifact_url }})
